@@ -17,12 +17,12 @@
             <div class="login100-pic js-tilt" data-tilt>
                 <a href="{% url 'blog_home' %}"> <img src="{% static 'accounts/img/img-01.png' %}" alt="IMG"></a>
             </div>
-
-            <form class="login100-form validate-form" method="post" action="{% url 'login' %}">
+            <form class="login100-form validate-form" method="post" action="{% url 'signup' %}">
                 {% csrf_token %}
                 <span class="login100-form-title">
 						Register your self
 					</span>
+                {{ error }}
 
                 <div class="wrap-input100 validate-input">
                     <input class="input100" type="text" name="email" placeholder="Email" autocomplete="false">
