@@ -9,3 +9,7 @@ def login(request):
 
 def signup(request):
     return render(request, 'accounts/signup.html')
+
+
+def forgot_pass(request):
+    return render(request, 'accounts/forgot.html')
