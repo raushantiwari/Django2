@@ -12,5 +12,11 @@ class Blogs(models.Model):
     delete = models.IntegerField(default=0)
     published = models.BooleanField(default=True)
 
+    def pub_date_pretty(self):
+        return self.pub_date.strftime('%b %e, %Y')
+
+    def pretty_text(self):
+        return self.body[:100]
+
     class Meta:
         db_table = 'blogs'
