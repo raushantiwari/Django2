@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from blogs.forms import BlogsForm
 import datetime
 
+
 # Create your views here.
 
 def index(request):
@@ -32,3 +33,17 @@ def create_blog(request):
     else:
         form = BlogsForm()
     return render(request, 'blogs/create-blog.html', {'form': form})
+
+
+@login_required(login_url='/account/login/')
+def edit_blog(request, blogid):
+    if request.method == 'POST':
+            blog = Blogs()
+            blog.title = request.POST['title']
+            blog.pub_date = datetime.datetime.now()
+            blog.image = request.FILES['image']
+            blog.save()
+            return redirect('/blog/' + str(blog.id))
+    else:
+        blog = Blogs.objects.get(id=blogid)
+        return render(request, 'blogs/edit-blog.html', {'blog': blog})
