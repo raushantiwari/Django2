@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
-from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import user_passes_test
 
 
 # Create your views here.
+def user_is_logged_in(user):
+    return not user.is_authenticated
 
+
+@user_passes_test(user_is_logged_in, login_url='/blog')
 def login(request):
     if request.method == 'POST':
         user = auth.authenticate(username=request.POST['name'], password=request.POST['pass'])
@@ -22,6 +26,7 @@ def login(request):
         return render(request, 'accounts/login.html')
 
 
+@user_passes_test(user_is_logged_in, login_url='/blog')
 def signup(request):
     if request.method == 'POST':
         if request.POST['pass'] == request.POST['confpass']:
@@ -43,6 +48,7 @@ def signup(request):
         return render(request, 'accounts/signup.html')
 
 
+@user_passes_test(user_is_logged_in, login_url='/blog')
 def forgot_pass(request):
     return render(request, 'accounts/forgot.html')
 
