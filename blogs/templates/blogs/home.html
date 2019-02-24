@@ -20,9 +20,6 @@
           font-size: 3.5rem;
         }
       }
-
-
-
 </style>
 {% endblock %}
 <!-- Header section -->
@@ -62,7 +59,7 @@
 <nav class="nav d-flex justify-content-between">
     <a class="p-2 text-muted" href="{% url 'blog_home' %}">Blog</a>
     <a class="p-2 text-muted" href="#">U.S.</a>
-    <a class="p-2 text-muted" href="#">Technology</a>
+    <a class="p-2 text-muted" href="{% url 'create_blog' %}">Create New Blog</a>
 </nav>
 {% endblock %}
 

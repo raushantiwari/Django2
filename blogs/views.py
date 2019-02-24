@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .admin import Blogs
 from django.contrib.auth.decorators import login_required
+from blogs.forms import BlogsForm
 
 
 # Create your views here.
@@ -17,4 +18,5 @@ def detail(request, blog_id):
 
 @login_required(login_url='/account/login/')
 def create_blog(request):
-    return render(request, 'blogs/create-blog.html')
+    form = BlogsForm()
+    return render(request, 'blogs/create-blog.html', {'form': form})
