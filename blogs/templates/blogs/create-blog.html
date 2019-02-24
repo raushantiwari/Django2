@@ -79,7 +79,7 @@ Create New Blog
 
 {% block main_content %}
 <div class="blog-post">
-    <form action="{% url 'create_blog' %}" method="post">
+    <form action="{% url 'create_blog' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container">
             <div class="form-group row">
