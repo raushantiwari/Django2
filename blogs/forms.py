@@ -6,4 +6,4 @@ class BlogsForm(forms.ModelForm):
     class Meta:
         model = Blogs
         # fields = '__all__'
-        fields = ['title', 'author', 'image', 'body', 'published']
+        fields = ['title', 'image', 'body', 'blog_category', 'published']

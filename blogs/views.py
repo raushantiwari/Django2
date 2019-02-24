@@ -20,30 +20,29 @@ def detail(request, blog_id):
 @login_required(login_url='/account/login/')
 def create_blog(request):
     if request.method == 'POST':
-        if request.POST['title'] and request.POST['author'] and request.FILES['image'] and request.POST['body']:
+        if request.POST['title'] and request.FILES['image'] and request.POST['body']:
             blog = Blogs()
             blog.title = request.POST['title']
             blog.body = request.POST['body']
             blog.image = request.FILES['image']
-            # blog.published = request.POST['published']
-            blog.author = request.POST['author']
+            blog.author = request.user
             blog.pub_date = datetime.datetime.now()
             blog.save()
             return redirect('/blog/' + str(blog.id))
     else:
         form = BlogsForm()
-    return render(request, 'blogs/create-blog.html', {'form': form})
+        return render(request, 'blogs/create-blog.html', {'form': form})
 
 
 @login_required(login_url='/account/login/')
 def edit_blog(request, blogid):
     if request.method == 'POST':
-            blog = Blogs()
-            blog.title = request.POST['title']
-            blog.pub_date = datetime.datetime.now()
-            blog.image = request.FILES['image']
-            blog.save()
-            return redirect('/blog/' + str(blog.id))
+        blog = Blogs()
+        blog.title = request.POST['title']
+        blog.pub_date = datetime.datetime.now()
+        blog.image = request.FILES['image']
+        blog.save()
+        return redirect('/blog/' + str(blog.id))
     else:
         blog = Blogs.objects.get(id=blogid)
         return render(request, 'blogs/edit-blog.html', {'blog': blog})

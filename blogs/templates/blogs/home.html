@@ -20,6 +20,7 @@
           font-size: 3.5rem;
         }
       }
+
 </style>
 {% endblock %}
 <!-- Header section -->
@@ -45,7 +46,7 @@
         <a class="btn btn-sm btn-outline-secondary" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
         <form id="logout" method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <input type="hidden" />
+            <input type="hidden"/>
         </form>
         {% else %}
         <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Login</a>&nbsp;
@@ -125,7 +126,9 @@ From the Firehose
 <div class="blog-post">
     <h2 class="blog-post-title"><a href="{% url 'blog_detail' item.id %}">{{ item.title }}</a></h2>
     <p class="blog-post-meta">{{ item.pub_date_pretty }} by <a href="#">{{ item.author }}</a></p>
+    {% if item.image %}
     <p><img src="{{ item.image.url }}" width="639" height="350" class="image"/></p>
+    {% endif %}
     <p>{{ item.pretty_text }}...</p>
 </div><!-- /.blog-post -->
 {% endfor %}

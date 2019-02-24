@@ -21,6 +21,7 @@
         }
       }
 
+
 </style>
 {% endblock %}
 <!-- Header section -->
@@ -79,8 +80,11 @@
 {% block main_content %}
 <div class="blog-post">
     <p class="blog-post-meta">{{ blog.pub_date_pretty }} by <a href="#">{{ blog.author }}</a></p>
+    {% if blog.image %}
     <p><img src="{{ blog.image.url }}" width="639" height="350" class="image"/></p>
+    {% endif %}
     <p>{{ blog.body }}</p>
+    <p>Category: {{ blog.blog_category }}</p>
 </div><!-- /.blog-post -->
 {% endblock %}
 <!-- Aside side section -->
