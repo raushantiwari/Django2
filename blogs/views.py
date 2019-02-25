@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from .admin import Blogs
 from django.contrib.auth.decorators import login_required
 from blogs.forms import BlogsForm
@@ -8,8 +9,11 @@ import datetime
 # Create your views here.
 
 def index(request):
-    blogs = Blogs.objects
-    return render(request, "blogs/home.html", {'blogs': blogs})
+    blogs = Blogs.objects.all()
+    paginator = Paginator(blogs, 2)  # Show 25 contacts per page
+    page = request.GET.get('page')
+    blog = paginator.get_page(page)
+    return render(request, "blogs/home.html", {'blogs': blog})
 
 
 def detail(request, blog_id):
