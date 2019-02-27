@@ -42,13 +42,26 @@ INSTALLED_APPS = [
 ]
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
-# CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
 
-# CKEDITOR_CONFIGS = {
-#     'awesome_ckeditor': {
-#         'toolbar': 'Basic',
-#     },
-# }
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'height': 500,
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Link', 'Unlink', 'Image'],
+            ['Styles', 'Format', 'Undo', 'Redo', 'Anchor'],
+            ['Flash', 'Table', 'HorizontalRule', 'TextColor', 'BGColor'],
+            ['Smiley', 'SpecialChar'], ['Source'],
+        ],
+    },
+    'special': {
+        'toolbar': 'Special',
+        'toolbar_Special': [
+            ['Bold', 'CodeSnippet'],
+        ],
+        'extraPlugins': 'codesnippet',
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

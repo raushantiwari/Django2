@@ -11,6 +11,7 @@ class Blogs(models.Model):
     image = models.ImageField(upload_to='images/', blank=True, null=True)
     body = models.TextField()
     summary = RichTextUploadingField(blank=True, null=True)
+    summary1 = RichTextUploadingField(blank=True, null=True,config_name='special')
     # summary = RichTextField(blank=True, null=True)
     published = models.BooleanField(default=True)
     BLOG_CATEGORY_CHOICES = (
