@@ -10,7 +10,7 @@ class BlogAdmin(admin.ModelAdmin):
     # fields = [('title', 'body'), ('author', 'pub_date'), ('image', 'delete'), ('published'), ]
     fieldsets = (
         ('Section 1', {
-            'fields': ('title', 'body')
+            'fields': ('title', 'body','summary')
         }),
         ('Section 2', {
             'fields': ('image', 'blog_category')

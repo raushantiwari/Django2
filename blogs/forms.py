@@ -1,9 +1,18 @@
-from django import forms
-from blogs.models import Blogs
+# from django import forms
+# from blogs.models import Blogs
+#
+#
+# class BlogsForm(forms.ModelForm):
+#     class Meta:
+#         model = Blogs
+#         # fields = '__all__'
+#         fields = ['title', 'image', 'body', 'summary', 'blog_category', 'published']
+
+from django.forms import ModelForm
+from .models import Blogs
 
 
-class BlogsForm(forms.ModelForm):
+class BlogsForm(ModelForm):
     class Meta:
         model = Blogs
-        # fields = '__all__'
-        fields = ['title', 'image', 'body', 'blog_category', 'published']
+        fields = ['title', 'image', 'body', 'summary', 'blog_category', 'published']

@@ -51,7 +51,7 @@
         </form>
         {% else %}
         <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Login</a>&nbsp;
-        <a class="btn btn-sm btn-outline-secondary" href="{% url 'signup' %}">Sign up</a>
+        <a class='btn btn-sm btn-outline-secondary' href="{% url 'signup' %}">Sign up</a>
         {% endif %}
     </div>
 </div>
@@ -84,6 +84,7 @@
     <p><img src="{{ blog.image.url }}" width="639" height="350" class="image"/></p>
     {% endif %}
     <p>{{ blog.body }}</p>
+    <p>{{ blog.summary | safe }}</p>
     <p>Category: {{ blog.blog_category }}</p>
 </div><!-- /.blog-post -->
 {% endblock %}

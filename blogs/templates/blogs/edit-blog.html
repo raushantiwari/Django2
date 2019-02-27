@@ -29,6 +29,8 @@
 
 
 
+
+
 </style>
 {% endblock %}
 <!-- Header section -->
@@ -98,7 +100,9 @@ Update Blog: {{ blog.title }}
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Image:</label>
                 <div class="col-sm-6">
+                    {% if blog.image %}
                     <img src="{{ blog.image.url }}" height="150" width="300"/>
+                    {% endif %}
                     <input type="file" name="image" accept="image/*" required="" id="id_image">
                 </div>
             </div>
@@ -116,6 +120,12 @@ Update Blog: {{ blog.title }}
                 <label class="col-sm-2 col-form-label">Body:</label>
                 <div class="col-sm-6">
                     <textarea name="body" cols="40" rows="10" required="" id="id_body">{{ blog.body }}</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Summary:</label>
+                <div class="col-sm-6">
+                    <textarea name="body" cols="40" rows="10" required="" id="id_body">{{ blog.summary }}</textarea>
                 </div>
             </div>
             <div class="form-group row">

@@ -28,6 +28,7 @@ def create_blog(request):
             blog = Blogs()
             blog.title = request.POST['title']
             blog.body = request.POST['body']
+            blog.summary = request.POST['summary']
             blog.image = request.FILES['image']
             blog.author = request.user
             blog.pub_date = datetime.datetime.now()
