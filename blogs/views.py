@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from .admin import Blogs
 from django.contrib.auth.decorators import login_required
@@ -39,15 +39,24 @@ def create_blog(request):
         return render(request, 'blogs/create-blog.html', {'form': form})
 
 
+# @login_required(login_url='/account/login/')
+# def edit_blog(request, blogid):
+#     if request.method == 'POST':
+#         blog = Blogs()
+#         blog.title = request.POST['title']
+#         blog.pub_date = datetime.datetime.now()
+#         blog.image = request.FILES['image']
+#         blog.save()
+#         return redirect('/blog/' + str(blog.id))
+#     else:
+#         blog = Blogs.objects.get(id=blogid)
+#         return render(request, 'blogs/edit-blog.html', {'blog': blog})
+
 @login_required(login_url='/account/login/')
-def edit_blog(request, blogid):
-    if request.method == 'POST':
-        blog = Blogs()
-        blog.title = request.POST['title']
-        blog.pub_date = datetime.datetime.now()
-        blog.image = request.FILES['image']
-        blog.save()
-        return redirect('/blog/' + str(blog.id))
-    else:
-        blog = Blogs.objects.get(id=blogid)
-        return render(request, 'blogs/edit-blog.html', {'blog': blog})
+def edit_blog(request, blog_id=None):
+    item = get_object_or_404(Blogs, id=blog_id)
+    form = BlogsForm(request.POST or None, instance=item)
+    if form.is_valid():
+        form.save()
+        return redirect('/blog/' + str(blog_id))
+    return render(request, 'blogs/create-blog.html', {'form': form})  # Here add/edit with same template.
